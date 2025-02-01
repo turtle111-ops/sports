@@ -7,6 +7,51 @@
 </head>
 <body>
     <h1>Hello world</h1>
-    <script src="server.js"></script>
+    <div id="serverSection">
+    </div>
+
+    <script>
+
+function displayServers() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let id = urlParams.get('id');  // Get 'id' from the URL
+    console.log("ID:", id);
+
+    const streamURLs = {
+        alpha: (id) => `https://streamed.su/api/stream/alpha/${id}`,
+        bravo: (id) => `https://streamed.su/api/stream/bravo/${id}`,
+        charlie: (id) => `https://streamed.su/api/stream/charlie/${id}`,
+        delta: (id) => `https://streamed.su/api/stream/delta/${id}`,
+        foxtrot: (id) => `https://streamed.su/api/stream/foxtrot/${id}`
+    };
+
+    // Convert all URL functions to actual URLs with the given 'id'
+    let urls = Object.values(streamURLs).map(fn => fn(id));
+
+    console.log("Fetching from:", urls);
+
+    // Fetch data from all URLs in parallel
+    Promise.all(urls.map(url => fetch(url).then(response => response.json())))
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error("Fetch error:", error);
+            
+        const serverSection = document.getElementById('serverSection');
+            data.forEach(server => {
+            const newDiv = document.createElement('div');
+            const newP = document.createElement('p');
+            newP.textContent = server.embedUrl;
+            newDiv.appendChild(newP);
+            serverSection.appendChild(newDiv);
+        });
+        });
+
+}
+
+displayServers();
+
+    </script>
 </body>
 </html>

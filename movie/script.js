@@ -1,12 +1,4 @@
-const sportURL = `https://streamed.su/api/sports`;
-const streamURL = {
-    alpha: (id) => `https://streamed.su/api/stream/alpha/${id}`,
-    bravo: (id) => `https://streamed.su/api/stream/bravo/${id}`,
-    charlie: (id) => `https://streamed.su/api/stream/charlie/${id}`,
-    delta: (id) => `https://streamed.su/api/stream/delta/${id}`,
-    echo: (id) => `https://streamed.su/api/stream/echo/${id}`,
-    foxtrot: (id) => `https://streamed.su/api/stream/foxtrot/${id}`
-};
+
 
 function displayAllMatches() {
 fetch(`https://streamed.su/api/matches/all`)
@@ -26,7 +18,7 @@ fetch(`https://streamed.su/api/matches/all`)
             matchImage.src = matchImage.getAttribute('data-fallback');
             matchImage.style.width = '10%';
             matchCard.onclick = function() {
-                window.location.href = `server.html?id=${matches.sources.id}`;
+                window.location.href = `server.html?id=${matches.sources.source.id}`;
             }
 };
             matchCard.appendChild(matchImage)
@@ -36,5 +28,7 @@ fetch(`https://streamed.su/api/matches/all`)
     displayMatches();
     console.log(data)});
 }
+
+
 
 displayAllMatches();

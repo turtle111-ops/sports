@@ -1,1 +1,0 @@
-fetch(`https://www.streamed.su/`)
