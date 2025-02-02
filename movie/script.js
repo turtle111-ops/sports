@@ -17,10 +17,10 @@ fetch(`https://streamed.su/api/matches/all`)
             matchImage.onerror = () => {
             matchImage.src = matchImage.getAttribute('data-fallback');
             matchImage.style.width = '10%';
+        };
             matchCard.onclick = function() {
-                window.location.href = `server.html?id=${matches.sources.source.id}`;
-            }
-};
+            window.location.href = `server.html?id=${matches.id}`;
+        }
             matchCard.appendChild(matchImage)
             matchBox.appendChild(matchCard);
         });

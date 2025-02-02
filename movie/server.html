@@ -42,7 +42,7 @@ function displayServers() {
             data.forEach(server => {
             const newDiv = document.createElement('div');
             const newP = document.createElement('p');
-            newP.textContent = server.embedUrl;
+            newP.textContent = server.source;
             newDiv.appendChild(newP);
             serverSection.appendChild(newDiv);
         });
